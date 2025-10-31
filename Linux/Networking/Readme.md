@@ -43,11 +43,11 @@
 
 
 
-| Command      | Purpose                       | Example                 |
-| ------------ | ----------------------------- | ----------------------- |
-| `ping`       | Test connectivity             | `ping google.com`       |
-| `traceroute` | Show network hops             | `traceroute google.com` |
-| `tracepath`  | Trace path (no root)          | `tracepath google.com`  |
-| `netstat`    | View open ports & connections | `netstat -tuln`         |
-| `tcpdump`    | Capture network packets       | `sudo tcpdump -i eth0`  |
-| `telnet`     | Test specific port connection | `telnet 8.8.8.8 53`     |
+    | Command      | Purpose                       | Example                 |
+    | ------------ | ----------------------------- | ----------------------- |
+    | `ping`       | Test connectivity             | `ping google.com`       |
+    | `traceroute` | Show network hops             | `traceroute google.com` |
+    | `tracepath`  | Trace path (no root)          | `tracepath google.com`  |
+    | `netstat`    | View open ports & connections | `netstat -tuln`         |
+    | `tcpdump`    | Capture network packets       | `sudo tcpdump -i eth0`  |
+    | `telnet`     | Test specific port connection | `telnet 8.8.8.8 53`     |

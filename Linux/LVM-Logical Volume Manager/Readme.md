@@ -18,7 +18,7 @@
 
 #### Creating Physical Volumes (PVs), Volume Groups (VGs), and Logical Volumes (LVs)
 ```bash
-pvcreate /dev/sda14 # creat physical volume
+pvcreate /dev/sda14 # creat physical volumes
 pvs   # list physical volume
 vgcreate vg_name /dev/sda14 # creat volume group
 vgs # list volume group
