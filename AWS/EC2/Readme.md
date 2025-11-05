@@ -22,6 +22,21 @@
   ![alt text](image-1.png)
 
 
+- change Instance type 
+  -  Stop EC2 first
+    ![alt text](image-5.png)
+  - slecet EC2 and chnage type
+    ![alt text](image-6.png)  
+  - select instance new type
+    ![alt text](image-8.png)
+  - start the EC2
+    ![alt text](image-9.png)  
+      
+- Enable Stop protection
+
+ ![alt text](image-10.png)
+ ![alt text](image-11.png)
+
 
 
 
@@ -218,3 +233,75 @@ Instances in the same partition may share hardware, but partitions do not.
    - Supports hundreds of instances.
    - Great for distributed systems like Hadoop, Cassandra, or Kafka.
    ![alt text](image-4.png)
+
+###  ENI (Elastic Network Interfaces)
+- An Elastic Network Interface (ENI) is a logical networking component in a VPC that represents a virtual network card.
+It provides network connectivity to EC2 instances
+
+
+- ENI Behavior
+  - Each EC2 instance can have one or more ENIs attached, depending on the instance type.
+  - The primary ENI (eth0) is created automatically when the instance launches and cannot be detached.
+  - Secondary ENIs (eth1, eth2, etc.) can be attached/detached dynamically.
+
+- The ENI can have the following attributes:
+    - Primary private IPv4, one or more secondary IPv4
+    - One Elastic IP (IPv4) per private IPv4
+    - One Public IPv4
+    - One or more security groups
+    - A MAC address
+- You can create ENI independently and attach them on the fly (move them) on EC2 instances
+for failover
+- Bound to a specific availability zone (AZ)  
+
+
+
+### EC2 Hibernate
+- EC2 Hibernate allows you to pause (suspend) an EC2 instance and later resume it from the exact same state, without needing to reinitialize or reload applications
+
+- When you hibernate an EC2 instance:
+  - The contents of RAM (memory) are saved to the root EBS volume (or a dedicated hibernation file on EBS).
+
+  - The instance state is preserved (including in-memory data, running processes, OS cache, etc.).
+
+  - The instance is stopped, meaning you don’t pay for compute (vCPU or RAM) — only for EBS storage.
+
+  - When you start (resume) the instance, EC2 restores the RAM data and resumes processes right where they left off.
+
+
+- Supported Instance Families – C3, C4, C5, I3, M3, M4, R3, R4, T2, T3, …
+- Instance RAM Size – must be less than 150 GB.
+- Instance Size – not supported for bare metal instances.
+- AMI – Amazon Linux 2, Linux AMI, Ubuntu, RHEL, CentOS & Windows…
+- Root Volume – must be EBS, encrypted, not instance store, and large
+ -Available for On-Demand, Reserved and Spot Instances
+- An instance can NOT be hibernated more than 60 days
+
+
+- create EC2 with enable hibernate and also EBS must be Encrypted
+    ![alt text](image-12.png)
+    ![alt text](image-13.png)
+
+- in Advanced details
+
+    ![alt text](image-14.png)
+
+- connecto EC2 and run uptime command  displays how long the system has been running
+    ![alt text](image-15.png)
+
+- then stop EC2 using hibernate option
+  
+    ![alt text](image-16.png)
+    ![alt text](image-17.png)
+    ![alt text](image-18.png)
+
+
+- then start the EC2 and run uptime command to check how long the system has been running
+    ![alt text](image-19.png)
+    ![alt text](image-20.png)
+
+
+
+
+
+
