@@ -71,3 +71,23 @@
     ![alt text](image-32.png)
     ![alt text](image-33.png)
     ![alt text](image-35.png)
+
+
+
+
+
+
+
+- created rds  and atteched to EC2 and only able to access using EC2 as i have created Ec2 istance is private using script 
+
+  ![alt text](image-37.png)
+  ![alt text](image-38.png)
+  ![alt text](image-39.png)
+
+- now deployed flask app in ec2 when i can able to fetch rds data on app 
+
+  
+
+
+
+  

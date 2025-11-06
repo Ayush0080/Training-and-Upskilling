@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Create a Free Tier–eligible Amazon RDS (PostgreSQL) instance and an EC2 instance
+  in the default VPC using AWS CloudFormation.
+
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair for SSH access
+    Type: AWS::EC2::KeyPair::KeyName
+
+  SubnetIds:
+    Description: "List of subnet IDs for RDS DBSubnetGroup"
+    Type: List<AWS::EC2::Subnet::Id>
+
+Resources:
+
+# Security Group for EC2 (SSH access)
+  EC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH access to EC2
+      VpcId: !Select [0, !Ref SubnetIds] # Pick VPC of first subnet
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+  # Security Group for RDS (allow PostgreSQL from EC2 SG)
+  RDSSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow PostgreSQL traffic from EC2 instance
+      VpcId: !Select [0, !Ref SubnetIds]
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          SourceSecurityGroupId: !Ref EC2SecurityGroup
+
+  # Subnet Group for RDS
+  RDSSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: "Subnet group for RDS"
+      SubnetIds: !Ref SubnetIds
+
+  # RDS Instance (Free Tier)
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: upskill-rds
+      AllocatedStorage: 20
+      DBInstanceClass: db.t3.micro
+      Engine: postgresql
+      EngineVersion: "13.7"
+      MasterUsername: admin
+      MasterUserPassword: Admin12345!
+      DBName: upskill
+      PubliclyAccessible: false
+      VPCSecurityGroups:
+        - !Ref RDSSecurityGroup
+      MultiAZ: false
+      DeletionProtection: false
+      DBSubnetGroupName: !Ref RDSSubnetGroup
+
+  # EC2 Instance
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0c55b159cbfafe1f0  # Amazon Linux 2 (update per region)
+      KeyName: !Ref KeyName
+      SecurityGroupIds:
+        - !Ref EC2SecurityGroup
+      SubnetId: !Select [0, !Ref SubnetIds]
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y postgresql
+          echo "EC2 ready to connect to RDS" > /home/ec2-user/status.txt
+
+Outputs:
+  EC2PublicIP:
+    Description: Public IP of the EC2 instance
+    Value: !GetAtt EC2Instance.PublicIp
+
+  RDSEndpoint:
+    Description: RDS PostgreSQL endpoint
+    Value: !GetAtt MyRDSInstance.Endpoint.Address
