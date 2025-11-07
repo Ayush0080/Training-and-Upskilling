@@ -83,3 +83,10 @@ RDS Proxy keeps a pool of active connections ready to go.
 | ** Geolocation Routing**                        | Routes traffic based on the **geographic location** of the user (by IP).                                     | Serve region-specific content or comply with data laws.   | India users → `in.example.com`, US users → `us.example.com`. |
 | ** Geoproximity Routing** *(Traffic Flow only)* | Routes based on user’s geographic location **and resource bias (weight adjustment)**.                        | Move more or less traffic to a particular location.       | Send 80% traffic to `Asia` and 20% to `Europe`.              |
 | ** Multi-value Answer Routing**                 | Returns **multiple healthy IPs** randomly to clients (like simple load balancing).                           | Basic load balancing without ELB.                         | Return any of 3 web servers’ IPs for `example.com`.          |
+
+
+
+
+### Kinesis Data Streams & Amazon Data Firehose
+
+  ![alt text](image.png)

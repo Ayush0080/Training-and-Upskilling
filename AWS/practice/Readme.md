@@ -85,8 +85,44 @@
   ![alt text](image-39.png)
 
 - now deployed flask app in ec2 when i can able to fetch rds data on app 
+   ![alt text](image-40.png)
 
   
+
+
+### ECS
+
+###### deployed flsk app using ECS
+
+
+
+- created image and uploaded to the amzon ECR 
+   ![alt text](image-41.png)
+
+   
+- now created task  definition  usding created image
+   ![alt text](image-42.png)
+
+
+- created cluster with tasks and services
+
+   ![alt text](image-43.png)
+   ![alt text](image-44.png)
+
+
+
+
+### App Runner
+
+
+- created image and uploaded to the amzon ECR 
+   ![alt text](image-41.png)
+
+
+-  created service using docker image
+
+   ![alt text](image-45.png)
+   ![alt text](image-46.png)
 
 
 
