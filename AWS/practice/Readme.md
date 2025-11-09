@@ -127,3 +127,70 @@
 
 
   
+
+### vpc 
+
+- created new vpc using 10.0.0.0/16  CIDR block
+  ![alt text](image-47.png)
+
+- create 4 subnet with new created vpc (2-public subnet , 2-private subnet with different Az) and enable Enable auto-assign public IPv4 address for both public subnet
+
+  ![alt text](image-48.png)
+  ![alt text](image-49.png)
+
+
+- created IGW and atteched to created vpc 
+  ![alt text](image-50.png)  
+
+
+- created two route-table in created vpc (public-route-table and private-route-table)  ans associate publice subnet into public-route-table and private subnet to the private-route-table
+  
+  ![alt text](image-51.png)
+  ![alt text](image-52.png)
+
+
+- atteche route to IGW to access internet 
+![alt text](image-53.png)
+  
+
+- created NAT gatway  on (both public subnet)to able to acess internet on private subnet asn associate to the private route table
+  ![alt text](image-54.png)
+
+#### NACL (Network Access Control List) 
+
+
+- NACL (Network ACL) is a stateless firewall that controls inbound and outbound traffic at the subnet level in your VPC (Virtual Private Cloud).
+
+   | Feature                  | **NACL (Network ACL)**                             | **Security Group (SG)**                               |
+   | ------------------------ | -------------------------------------------------- | ----------------------------------------------------- |
+   | **Applies to**           | Subnet level                                       | Instance level                                        |
+   | **Stateful / Stateless** | **Stateless** (must allow both inbound & outbound) | **Stateful** (response traffic automatically allowed) |
+   | **Rules order**          | Evaluated **in order (numbered)**                  | All rules are evaluated together                      |
+   | **Default behavior**     | Default NACL: allows all traffic                   | Default SG: allows no inbound, all outbound           |
+   | **Use case**             | Subnet-level network control                       | Instance-level fine-grained control                   |
+   | **Direction required**   | Must add rules for both inbound & outbound         | Only need inbound (outbound auto-allowed if stateful) |
+
+- Every subnet in a VPC must be associated with one NACL:
+
+   - If you don’t explicitly associate one, the subnet uses the default NACL.
+
+   - You can associate one NACL with multiple subnets, but one subnet can have only one NACL at a time.
+
+  - Ephemeral ports are temporary, short-lived ports that are automatically assigned by an operating system to handle outgoing connections (client-side connections).
+
+
+
+### VPC Peering
+
+- VPC Peering is a network connection between two VPCs that enables them to communicate with each other privately using private IP addresses — as if they were part of the same network
+
+
+##### Types of VPC Peering
+
+   | Type                     | Description                               |
+| ------------------------ | ----------------------------------------- |
+| **Intra-region Peering** | Between VPCs in the **same region**       |
+| **Inter-region Peering** | Between VPCs in **different AWS regions** |
+
+    
+  
