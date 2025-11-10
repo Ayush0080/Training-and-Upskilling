@@ -57,3 +57,14 @@
 | **Cost Metrics**      | **Estimated Storage Cost per Bucket / Storage Class** – Approximate cost per month                      | Cost           | Bucket, storage class    | Identify high-cost buckets, optimize storage class usage          |
 |                       | **Estimated Cost per Account** – Aggregated estimated storage cost                                      | Cost           | Account level            | Track overall storage spend                                       |
 | **Optional / Export** | Metrics can be exported to CSV or Parquet for further analysis                                          | Reporting      | Bucket, prefix, account  | Integrate with Athena, QuickSight, or custom analytics dashboards |
+
+
+
+### Access Point
+- S3 Access Point is basically a customized access entry (like a virtual endpoint) to an S3 bucket, each with its own:
+
+    - Unique name and ARN
+
+    - Custom permissions (IAM or resource-based policy)
+
+    - Network configuration (public internet or VPC-only)

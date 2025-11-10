@@ -90,3 +90,95 @@ RDS Proxy keeps a pool of active connections ready to go.
 ### Kinesis Data Streams & Amazon Data Firehose
 
   ![alt text](image.png)
+
+
+
+### Amazon DynamoDB
+
+- Amazon DynamoDB is a fully managed NoSQL database service from AWS.It’s designed for high performance, low latency, and massive scalability — often used for serverless applications, IoT, gaming, and real-time analytics
+
+
+| Feature                               | Description                                                                    |
+| ------------------------------------- | ------------------------------------------------------------------------------ |
+| **Fully Managed**                     | No servers to manage, patch, or scale — AWS handles everything.                |
+| **NoSQL Database**                    | Stores data in **key-value** or **document** format (not relational).          |
+| **Scalable**                          | Automatically scales read/write capacity as traffic increases.                 |
+| **Performance**                       | Single-digit millisecond latency, consistent even at scale.                    |
+| **Durability**                        | Data replicated across **3 AZs** for fault tolerance.                          |
+| **Integrated with AWS Services**      | Works seamlessly with **Lambda**, **API Gateway**, **Kinesis**, **S3**, etc.   |
+| **On-Demand or Provisioned Capacity** | Choose between automatic scaling or fixed RCU/WCU (read/write capacity units). |
+
+- Data Model
+
+  -  Table → Collection of items (like an RDS table)
+
+  - Item → A record (like a row)
+
+  - Attributes → Columns (key-value pairs)
+
+  - Primary Key → Uniquely identifies each item
+
+  - Partition key (hash key)
+or Partition + Sort key (composite key)
+
+
+```bash
+  {
+  "UserID": "U1001",
+  "Name": "Ayush",
+  "Age": 25,
+  "City": "Mumbai"
+}
+```
+
+
+### DynamoDB Accelerator (DAX)
+
+- DAX = DynamoDB Accelerator, an in-memory caching layer for DynamoDB.
+
+   - Think of it like Redis or Memcached, but purpose-built for DynamoDB.
+   - default TTL 5 minutes
+   - help to solve read congestion by caching
+
+
+   -  How DAX Works
+
+   ```bash
+    Application
+      │
+      ▼
+  ┌──────────┐
+  │   DAX    │  ← (In-memory cache)
+  └──────────┘
+      │
+      ▼
+  ┌──────────┐
+  │ DynamoDB │  ← (Persistent storage)
+  └──────────┘
+    ```
+
+
+
+### API Gateway
+
+- API Gateway is a managed service that helps you expose your application logic (Lambda, EC2, etc.) as REST, HTTP, or WebSocket APIs to clients — securely and efficiently.
+
+
+  ```bash
+
+  Step-by-Step Flow:
+
+  A user sends a request:
+  GET https://abc123.execute-api.us-east-1.amazonaws.com/prod/user/101
+
+  API Gateway receives the request.
+
+  It triggers a Lambda function.
+
+  The Lambda function reads from DynamoDB.
+
+  The Lambda returns JSON data.
+
+  API Gateway sends the response to the user.
+
+  ```
