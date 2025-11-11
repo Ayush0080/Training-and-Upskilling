@@ -83,7 +83,7 @@ Some configurations — especially if you enabled “CollectD” metrics or “S
 #### SSM - RUN command using document
 
 
-- created document on ssm for istalleing httpd and using the document and run command installing on created ec2
+- created document on ssm for installing httpd and using the document and run command installing on created ec2
 
     ![alt text](image-21.png)
     ![alt text](image-22.png)
@@ -98,3 +98,93 @@ Some configurations — especially if you enabled “CollectD” metrics or “S
    ![alt text](image-29.png) 
    ![alt text](image-30.png)
    ![alt text](image-31.png)
+
+
+## CloudFormation  
+
+- created EC2 using CloudFormation
+
+  ![alt text](image-32.png)
+  ![alt text](image-33.png)
+  ![alt text](image-34.png)
+  ![alt text](image-35.png)
+  ![alt text](image-36.png)
+
+
+
+- update and delete stack
+
+  ![alt text](image-37.png)
+  ![alt text](image-38.png)
+  ![alt text](image-39.png)
+  ![alt text](image-40.png)
+  ![alt text](image-41.png)
+
+
+
+
+## Serverless Cost Optimization Notifier
+
+- Create an IAM role with trust policy allowing Lambda, then attach two things:
+
+   - AWS managed policy: AWSLambdaBasicExecutionRole (for CloudWatch logs)
+
+   - Inline policy allowing Cost Explorer read + SNS publish.
+
+      ```bash
+            {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "ce:GetCostAndUsage",
+            "ce:GetCostAndUsageWithResources",
+            "ce:GetDimensionValues",
+            "ce:GetCostForecast"
+          ],
+          "Resource": "*"
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "sns:Publish"
+          ],
+          "Resource": "arn:aws:sns:<REGION>:<ACCOUNT_ID>:cost-alert-topic*"
+        }
+      ]
+     }
+      ```
+    
+    
+
+![alt text](image-43.png)
+
+
+- Created SNS Topic & Subscription 
+
+  ![alt text](image-44.png)
+  ![alt text](image-45.png)
+
+
+- Created Lambda Function and atteched role that created
+  ![alt text](image-46.png) 
+  ![alt text](image-47.png)
+
+
+-  set Environment variables
+   ![alt text](image-48.png)
+
+- Created an EventBridge (CloudWatch Events) Scheduled Rule
+   ![alt text](image-49.png) 
+   ![alt text](image-50.png)
+   ![alt text](image-51.png)
+
+
+- tested lamba 
+   ![alt text](image-52.png)
+   ![alt text](image-53.png)
+
+
+   
+
