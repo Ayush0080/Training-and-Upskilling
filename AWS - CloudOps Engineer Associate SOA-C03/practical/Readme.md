@@ -186,5 +186,42 @@ Some configurations — especially if you enabled “CollectD” metrics or “S
    ![alt text](image-53.png)
 
 
-   
 
+
+## servicecatalog
+
+
+- created role for ServiceCatalogLaunchRole
+  ![alt text](image-54.png)
+
+- created simple EC2 web server template (ec2-web.yaml) and upload it to an S3 bucket.
+  ![alt text](image-55.png) 
+
+- Created a Portfolio
+  ![alt text](image-56.png)
+
+
+- Created the Product
+   ![alt text](image-57.png)
+   ![alt text](image-58.png)
+
+- Added Product to Portfolio 
+   ![alt text](image-59.png)  
+
+
+- Added Launch Constraint
+  ![alt text](image-60.png)
+  ![alt text](image-61.png)
+  ![alt text](image-62.png)
+
+-   Give Access to User
+    ![alt text](image-63.png)
+
+
+
+- now loging with i am user and  launch the product
+  ![alt text](image-64.png) 
+  ![alt text](image-65.png) 
+  ![alt text](image-66.png) 
+  ![alt text](image-67.png)
+  ![alt text](image-68.png)

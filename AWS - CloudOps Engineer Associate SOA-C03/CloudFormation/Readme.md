@@ -58,3 +58,54 @@ AWS CloudFormation template
 
 
 #### CloudFormation – Outputs
+
+  - Creating a SSH Security Group as part of one template 
+  -  Wecreate an output that references that security group
+      ![alt text](image-2.png)
+
+- CloudFormation – Outputs Cross-Stack 
+Reference
+  ![alt text](image-3.png)
+
+
+
+
+#### Rollbacks
+
+| Option                                          | What Happens on Failure                                   | Stack State                        | Common Use Case                |
+| ----------------------------------------------- | --------------------------------------------------------- | ---------------------------------- | ------------------------------ |
+| **Roll back all stack resources**               | Deletes all resources created during the failed operation | `ROLLBACK_COMPLETE`                | Production; ensure clean state |
+| **Preserve successfully provisioned resources** | Keeps successfully created resources                      | `CREATE_FAILED` or `UPDATE_FAILED` | Development / debugging        |
+
+
+
+### CloudFormation StackSet
+
+- A StackSet is an extension of CloudFormation that allows you to deploy the same CloudFormation stack across multiple AWS accounts and multiple regions — automatically.
+
+- It’s like a multi-account, multi-region CloudFormation manager.
+
+
+- How Deployment Happens
+
+   -  Create a StackSet
+
+        - Upload your CloudFormation template (YAML or JSON).
+
+        - Define parameters and permissions.
+
+    - Add Target Accounts & Regions
+
+       -  Choose accounts (manually or via AWS Organizations).
+
+        - Choose one or more AWS regions.
+
+    - CloudFormation Automatically:
+
+        - Creates stack instances in each target account/region.
+
+        - Deploys the resources as defined in your template.
+
+    - Centralized Management
+
+    - You can update, delete, or view all stacks from the Admin account.
