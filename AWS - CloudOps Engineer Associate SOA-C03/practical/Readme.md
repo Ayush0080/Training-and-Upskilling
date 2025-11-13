@@ -225,3 +225,118 @@ Some configurations — especially if you enabled “CollectD” metrics or “S
   ![alt text](image-66.png) 
   ![alt text](image-67.png)
   ![alt text](image-68.png)
+
+
+
+
+
+## Cross Account vpc peering
+
+
+
+- created vpc with 4 subnet(2-pulic and 2 -private)
+   ![alt text](image-69.png)
+
+
+- created  Internet gateway and atteched to created vpc
+   ![alt text](image-74.png)
+
+- created NAT gateway in public subnet
+  ![alt text](image-75.png)   
+
+
+- created two Route tables
+    - public Route table : associated 2 public subnet
+    - private Route table : associated 2 private subnet
+      ![alt text](image-70.png)
+      ![alt text](image-72.png)
+      ![alt text](image-71.png)
+      ![alt text](image-73.png)
+  
+
+
+- cretaed two ec2 instances
+    - public-ec2 - created in publice subnet
+    - private-ec2 - created in private subnet
+
+      ![alt text](image-77.png)
+      - in private ec2 sg allow from pub-ec2 sg
+      ![alt text](image-78.png)
+
+
+- now i am successfully able to access internet on ec2 as well able to connect private ec2 and also able to access internet on private ec2
+![alt text](image-76.png)
+
+
+
+- now created cross region vpc peering
+  ![alt text](image-79.png)
+
+- now in to another account accept request
+  ![alt text](image-80.png)
+  ![alt text](image-81.png)
+
+
+
+- edit rout destination = another account vpc cider and target is peering connection
+ ![alt text](image-83.png)
+
+
+
+- now edited publice ec2 sg to ssh from another account vpc cidr
+ ![alt text](image-91.png)
+
+
+
+- now i am able to loging into second account ec2 with all secinirio
+
+    - my pub-ec2 to my private-ec2 to another account public-ec2 to private ec2 of second account
+    - my pub-ec2 to  another account public-ec2 to private ec2 of second account
+    ![alt text](image-86.png)
+    ![alt text](image-85.png)
+
+
+- EventBridge Cross Account
+  
+- Go to Event Bus - Add resoruce policy to Allow to Account B can put their events into My Account A. 
+  ![alt text](image-92.png) 
+
+
+- Go to Account A and Define EventBridge Rule for EC2 for Status: running
+- Assign Resource Policy to EventBridge for Put Event from Account A to Account B by using ARN of EventBridge Default Bus of Account B.
+   ![alt text](image-87.png)
+   ![alt text](image-88.png)
+   ![alt text](image-89.png)
+   ![alt text](image-90.png)
+
+
+- Go to Account B > Create Role for SSM and give permissions.
+
+![alt text](image-93.png)
+
+ 
+- Create SSM Doc To install nginx
+
+![alt text](image-94.png)
+
+- Create EventBridge Rule in Account B.
+- To Trigger SSM Automation in Account A - Choose Target As Account A.
+
+```bash 
+  {
+    
+    "source": ["aws.ec2"],
+    "account": ["490909520477"],
+    "detail-type": ["EC2 Instance State-change Notification"],
+    "detail": { "state": ["running"] }
+  }
+  ```
+  
+- Choose target as SSM and Give ARN of SSM Role
+
+  ![alt text](image-95.png)
+
+
+  
+
+

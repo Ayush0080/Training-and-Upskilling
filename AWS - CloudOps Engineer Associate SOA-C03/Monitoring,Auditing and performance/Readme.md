@@ -29,4 +29,19 @@ even before real users experience issues.
 screenshot
 - Canary Recorder – used with CloudWatch Synthetics Recorder (record your 
 actions on a website and automatically generates a script for that)
-- GUI Workflow Builder – verifies that actions can be taken on your webpage (e.g., test a webpage with a login form )   
+- GUI Workflow Builder – verifies that actions can be taken on your webpage (e.g., test a webpage with a login form )  
+
+
+
+## AWS CloudTrail
+
+- Provides governance, compliance and audit for your AWS Account
+- CloudTrail is enabled by default!
+- Get an history of events / API calls made within your AWS Account by:
+    - Console
+    - SDK
+    - CLI
+- AWS Services
+- Can put logs from CloudTrail into CloudWatch Logs or S3
+- A trail can be applied to All Regions (default) or a single Region.
+- If a resource is deleted in AWS, investigate CloudTrail first
