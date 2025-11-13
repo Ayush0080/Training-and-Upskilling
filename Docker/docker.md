@@ -104,9 +104,6 @@
    ![alt text](image-49.png)
    ![alt text](image-50.png)
 
-- RUN – Volume mapping
-
-  ![alt text](image-15.png)
 
 - Inspect Container
   ![alt text](image-48.png)
@@ -267,7 +264,7 @@ docker run -m 512m nginx # Restricts container to 512 MB RAM.
     ```bash
      docker run -v volume1:/var/lib/mysql mysql
     ```
-    ![alt text](image-34.png)    
+    ![alt text](image.png)   
 
     
  
