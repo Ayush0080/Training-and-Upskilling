@@ -267,6 +267,22 @@ docker run -m 512m nginx # Restricts container to 512 MB RAM.
     ![alt text](image.png)   
 
     
- 
+- to show detailes about downloaded images 
+
+```bash
+  docker history <imageid>
+```
+
+![alt text](image-1.png)
 
 
+
+
+-  disk usgae of docker
+
+```bash
+  docker system df
+  docker system df -v  # o particukle images and all
+
+```
+![alt text](image-3.png)
