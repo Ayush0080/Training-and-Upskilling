@@ -46,3 +46,8 @@ mysql> exit
 ![alt text](image-15.png)
 
 
+- Deploy with web app
+
+![alt text](image-16.png)
+
+
