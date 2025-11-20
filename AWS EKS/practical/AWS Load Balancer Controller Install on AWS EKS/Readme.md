@@ -146,7 +146,7 @@ aws iam create-policy \
 - arn of policy
 
 ```bash
-"arn:aws:iam::490909520477:policy/AWSLoadBalancerControllerIAMPolicy"
+arn:aws:iam::490909520477:policy/AWSLoadBalancerControllerIAMPolicy
 ```
 
 
@@ -225,7 +225,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
   --set region=us-east-1 \
-  --set vpcId=vpc-0c5e1ff85c3f2d375 \
+  --set vpcId=vpc-047f01d7cd2aa7d47 \
   --set image.repository=public.ecr.aws/eks/aws-load-balancer-controller
 
 ```
@@ -281,3 +281,12 @@ kubectl describe ingressclass my-aws-ingress-class
 ![alt text](image-12.png)
 ![alt text](image-14.png)
 ![alt text](image-13.png)
+
+
+
+- Deploy kube-manifests with routing rule
+  ![alt text](image-15.png)
+
+
+
+

@@ -102,3 +102,44 @@ metadata:
                         port:
                         number: 80
         ```
+
+
+- ``Ingress Target Types in AWS Load Balancer Controller(traffice mode)``
+
+
+   - ``ingress target type - instance``
+      - ALB sends traffic to the EC2 instance node (node’s private IP).
+      - Then the kube-proxy forwards traffic to the correct Pod.
+        - How it works
+
+            ALB → EC2 Node → Pod
+
+        - When to use
+
+            - If your Pods use hostNetwork: true
+
+            - If your Pods use NodePort
+
+            - When you want traffic to go through the node    
+
+
+   - ``ingress target type - ip``
+
+     - ALB sends traffic directly to the Pod IP.
+     - How it works
+
+       - ALB → Pod (Direct)
+
+        When to use
+
+        - Almost always for EKS
+
+        - For deployments, services with ClusterIP
+
+        - Works with Fargate
+
+        - Better performance
+
+        - Lower latency
+
+        - True pod-level load balancing
