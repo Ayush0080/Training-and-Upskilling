@@ -626,6 +626,6 @@ print("issuperset:", a.issuperset({1}))
 # 13. isdisjoint()
 print("isdisjoint:", a.isdisjoint({10, 20}))
 # Output: True
-
+# n
 
 ````
