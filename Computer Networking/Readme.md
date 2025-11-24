@@ -286,7 +286,7 @@ data in a LAN
 
     - It asks the device for data
 
-    - Shows it on a dashboard
+    - Shows it on a dashboards
 
 
 #### VPN = Virtual Private Network
