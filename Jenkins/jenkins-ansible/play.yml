@@ -1,0 +1,5 @@
+- hosts: myec2
+  vars:
+    message: "hello from jenkins"
+  tasks:
+    - shell: echo "{{ message }}" > /tmp/ansible-file
