@@ -1,5 +1,5 @@
 variable "aws_region" {
-    description = "which region need to deploy"
+    description = "where needs to be deploy"
 }
 
 variable "vpc_cidr" {
