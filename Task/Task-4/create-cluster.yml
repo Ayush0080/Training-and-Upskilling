@@ -1,0 +1,4 @@
+eksctl create cluster \
+  --name task-4 \
+  --region ap-south-1 \
+  --without-nodegroup

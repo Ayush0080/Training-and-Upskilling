@@ -1,0 +1,11 @@
+eksctl create nodegroup \
+  --cluster task-4 \
+  --region ap-south-1 \
+  --name task-4-private-ng \
+  --node-type t3.medium \
+  --nodes 2 \
+  --nodes-min 2 \
+  --nodes-max 4 \
+  --node-volume-size 20 \
+  --managed \
+  --node-private-networking

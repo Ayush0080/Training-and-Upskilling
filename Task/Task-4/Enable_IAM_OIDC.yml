@@ -1,0 +1,4 @@
+eksctl utils associate-iam-oidc-provider \
+  --cluster task-4 \
+  --region ap-south-1 \
+  --approve
