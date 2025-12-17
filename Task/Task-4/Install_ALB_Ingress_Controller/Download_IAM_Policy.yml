@@ -1,0 +1,3 @@
+# Download IAM Policy
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
+

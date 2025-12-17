@@ -1,0 +1,2 @@
+##  restarted CNI
+kubectl rollout restart ds aws-node -n kube-system  
