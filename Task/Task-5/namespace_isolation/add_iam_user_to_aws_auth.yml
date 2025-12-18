@@ -1,0 +1,13 @@
+kubectl edit configmap aws-auth -n kube-system
+
+# Inside the file, add below mapUsers:
+
+mapUsers: |
+  - userarn: arn:aws:iam::075285241029:user/team-a-user
+    username: team-a-user
+    groups:
+      - team-a-group
+  - userarn: arn:aws:iam::075285241029:user/team-b-user
+    username: team-b-user
+    groups:
+      - team-b-group

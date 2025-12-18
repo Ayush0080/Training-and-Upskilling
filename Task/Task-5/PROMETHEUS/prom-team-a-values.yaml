@@ -1,0 +1,24 @@
+server:
+  persistentVolume:
+    enabled: false
+  scrape_configs:
+    - job_name: "team-a-pods"
+      kubernetes_sd_configs:
+        - role: pod
+          namespaces:
+            names:
+              - team-a
+
+alertmanager:
+  enabled: true
+  persistence:
+    enabled: false
+
+namespaceOverride: monitoring-team-a
+
+
+
+# command 
+helm install prom-team-a prometheus-community/prometheus \
+  -n monitoring-team-a \
+  -f prom-team-a-values.yaml

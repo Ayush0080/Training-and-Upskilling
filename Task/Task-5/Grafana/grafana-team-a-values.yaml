@@ -1,0 +1,20 @@
+adminUser: admin
+adminPassword: admin123
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus-Team-A
+        type: prometheus
+        url: url: http://prom-team-a-prometheus-server.monitoring-team-a.svc.cluster.local
+        access: proxy
+        isDefault: true
+
+
+# command
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install grafana-team-a grafana/grafana \
+  -n monitoring-team-a \
+  -f grafana-team-a-values.yaml
