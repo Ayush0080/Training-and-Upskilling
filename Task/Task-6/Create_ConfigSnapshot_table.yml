@@ -1,0 +1,39 @@
+CREATE EXTERNAL TABLE aws_config_db.config_snapshot (
+  fileversion STRING,
+  configurationitems ARRAY<
+    STRUCT<
+      configurationItemVersion: STRING,
+      configurationItemCaptureTime: STRING,
+      configurationItemStatus: STRING,
+      awsAccountId: STRING,
+      resourceType: STRING,
+      resourceId: STRING,
+      resourceName: STRING,
+      awsRegion: STRING,
+      availabilityZone: STRING,
+      configuration: STRING
+      
+    >
+  >
+)
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+LOCATION 's3://org-aws-config-inventory/task-5/AWSLogs/<ACCOUNT-ID>/Config/<REGION>/ConfigSnapshot/';
+
+
+--------------- 
+CREATE TABLE IF NOT EXISTS aws_config_db.resource_inventory_curated
+WITH (
+  format = 'PARQUET',
+  parquet_compression = 'SNAPPY',
+  external_location = 's3://athena-query-results-075285241029/resource_inventory_curated/'
+) AS
+SELECT
+  ci.resourceType                 AS resource_type,
+  ci.resourceId                   AS resource_id,
+  ci.resourceName                 AS resource_name,
+  ci.awsRegion                    AS region,
+  ci.availabilityZone             AS availability_zone,
+  ci.configurationItemStatus      AS status,
+  ci.configurationItemCaptureTime AS captured_time
+FROM aws_config_db.config_snapshot
+CROSS JOIN UNNEST(configurationitems) AS t(ci);

@@ -1,0 +1,21 @@
+CREATE OR REPLACE VIEW aws_config_db.v_resource_inventory AS
+SELECT
+  resource_type,
+  resource_id,
+  resource_name,
+  region,
+  availability_zone,
+  status,
+  captured_time
+FROM aws_config_db.resource_inventory_curated;
+
+
+
+
+# validate view 
+SELECT resource_type, COUNT(*)
+FROM aws_config_db.v_inventory
+GROUP BY resource_type;
+
+
+
